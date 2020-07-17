@@ -95,7 +95,7 @@ class Form(QWidget):
                 
                 r = results[0] 
                                 
-                masks = r['masks'][:, :, r['class_ids']==44] #knife의 class_ids가 44이기 때문에 knife만 찾기 위해서 위와 같은 코드 작성
+                masks = r['masks'][:, :, r['class_ids']==44] #knife's class_ids is 44
                 mask = np.sum(masks, axis=2).astype(np.bool)
                 mask_3d = np.repeat(np.expand_dims(mask, axis=2), 3, axis=2).astype(np.uint8)
                 
