@@ -82,19 +82,14 @@ class Form(QWidget):
         )
         codec = cv2.VideoWriter_fourcc(*'DIVX')
         output = cv2.VideoWriter('1.mp4', codec, 60.0, size) 
-
-        print("btn_1 Clicked!!!!!!!!!!222")
+        
         self.lb_3.setText("*****진행중*****")
         self.lb_3.repaint()
-        print("btn_1 Clicked!!!!!!!!!!333")
-
-
+        
         while(capture.isOpened()):
-            print("btn_1 Clicked!!!!!!!!!!444444")
             ret, frame = capture.read()
 
             if ret:
-                print("btn_1 Clicked!!!!!!!!55555555")
                         # add mask to frame
                 results = model.detect([frame], verbose=1) 
                 
@@ -106,13 +101,11 @@ class Form(QWidget):
                 
                 blurred_img = cv2.blur(frame, (101, 101))   #블러
                 mask_3d_blurred = cv2.medianBlur(mask_3d,9)
-                
-                
+                    
                 person_mask = mask_3d_blurred * blurred_img.astype(np.float32)  #배경 그대로, 칼 블러 
                 bg_mask = (1 - mask_3d_blurred) * frame.astype(np.float32)
-                out = (person_mask + bg_mask).astype(np.uint8)
-
-
+                out = (person_mask + bg_mask).astype(np.uint8
+                                                     
                 output.write(out) 
                 out=cv2.resize(out,(int(out.shape[1] * scaler),int(out.shape[0] * scaler)))
                 
@@ -120,7 +113,6 @@ class Form(QWidget):
                 
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
-                    print("btn_1 Clicked!!!!!!!!!!666666")
                     break
             else:
                 break
